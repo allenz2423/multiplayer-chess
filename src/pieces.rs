@@ -51,13 +51,13 @@ pub struct King {
     inCheck:bool,
     color:String,
     name:String,
-    possibleMoves:HashMap<i8, Vec<i8>>,
+    possibleMoves:Vec<i8>,
     ownBoard:Board,
     
 }
 impl King {
     pub fn get_moves() -> HashMap<i8, Vec<i8>> {
-        let mut possibleMoves:PossibleMoves = HashMap::new();
+        let mut possibleMoves:PossibleMoves = Vec::new();
         let mut tracker:i8 = 0;
         for i in -1..2 {
             for j in -1..2 {
@@ -108,14 +108,13 @@ pub struct Queen {
     position:Vec<i8>,
     color:String,
     name:String,
-    possibleMoves:HashMap<i8, Vec<i8>>,
+    possibleMoves:Vec<i8>,
     
 }
 impl Queen {
     pub fn new(color:String, pos:Vec<i8>) -> Self {
-        let mut possibleMoves:HashMap<i8,Vec<i8>> = HashMap::new();
-        possibleMoves.insert(1,vec![pos[0],pos[1]]);
-
+        let mut possibleMoves:Vec<Vec<i8>> = Vec::new();
+        possibleMoves.push_back(vec![pos[0],pos[1]]);
         Self {
             position:pos,
             color,
@@ -130,13 +129,13 @@ pub struct Knight {
     position:Vec<i8>,
     color:String,
     name:String,
-    possibleMoves:HashMap<i8, Vec<i8>>,
+    possibleMoves:Vec<i8>,
     
 }
 impl Knight {
     pub fn new(color:String, pos:Vec<i8>) -> Self {
-        let mut possibleMoves:HashMap<i8,Vec<i8>> = HashMap::new();
-        possibleMoves.insert(1,vec![pos[0],pos[1]]);
+        let mut possibleMoves:Vec<Vec<i8>> = Vec::new();
+        possibleMoves.push_back(vec![pos[0],pos[1]]);
         Self {
             position:pos,
             color,
@@ -152,13 +151,13 @@ pub struct Bishop {
     position:Vec<i8>,
     color:String,
     name:String,
-    possibleMoves:HashMap<i8, Vec<i8>>,
+    possibleMoves:Vec<i8>,
     
 }
 impl Bishop {
     pub fn new(color:String, pos:Vec<i8>) -> Self {
-        let mut possibleMoves:HashMap<i8,Vec<i8>> = HashMap::new();
-        possibleMoves.insert(1,vec![pos[0],pos[1]]);
+        let mut possibleMoves:Vec<Vec<i8>> = Vec::new();
+        possibleMoves.push_back(vec![pos[0],pos[1]]);
         Self {
             position:pos,
             color,
@@ -174,13 +173,13 @@ pub struct Rook {
     position:Vec<i8>,
     color:String,
     name:String,
-    possibleMoves:HashMap<i8, Vec<i8>>,
+    possibleMoves:Vec<i8>,
     
 }
 impl Rook {
     pub fn new(color:String, pos:Vec<i8>) -> Self {
-        let mut possibleMoves:HashMap<i8,Vec<i8>> = HashMap::new();
-        possibleMoves.insert(1,vec![pos[0],pos[1]]);
+        let mut possibleMoves:Vec<Vec<i8>> = Vec::new();
+        possibleMoves.push_back(vec![pos[0],pos[1]]);
         Self {
             position:pos,
             color,
@@ -196,20 +195,18 @@ pub struct Pawn {
     position:Vec<i8>,
     color:String,
     name:String,
-    possibleMoves:HashMap<i8, Vec<i8>>,
-    
+    possibleMoves:Vec<i8>,
     enpassantPossible:bool,
     
 }
 impl Pawn {
     pub fn new(color:String, pos:Vec<i8>) -> Self {
-        let mut possibleMoves:HashMap<i8,Vec<i8>> = HashMap::new();
-        possibleMoves.insert(1,vec![pos[0],pos[1]]);
+        let mut possibleMoves:Vec<Vec<i8>> = Vec::new();
         Self {
             position:pos,
             color,
             name: "Pawn".to_string(),
-           possibleMoves, 
+            possibleMoves, 
             enpassantPossible:true,
         }
     }
